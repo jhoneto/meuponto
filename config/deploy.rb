@@ -35,8 +35,15 @@ set :rvm_ruby_version, '2.0.0'
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 # set :keep_releases, 5
 
-namespace :deploy do
 
+namespace :deploy do
+  desc "Deploy and run migrations"
+  task :migrations do
+    update
+    migrate
+    restart
+    cleanup
+  end
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
