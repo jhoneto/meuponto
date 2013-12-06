@@ -58,7 +58,9 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: meuponto_production
+  database: meuponto
   pool: 5
   username: meuponto
-  password:
+  password: meuponto
+  host: localhost
+  port: 5432
