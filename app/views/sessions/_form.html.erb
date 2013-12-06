@@ -1,0 +1,12 @@
+<%= form_for :session, :url => session_path, :html => {:class => "form-signin"}  do |form| %>
+  <h2 class="form-signin-heading">Login</h2>
+  <%= form.text_field :email, :type => 'email', :placeholder => "Email", :class => "form-control"%>
+  <%= form.password_field :password, :placeholder => "Senha", :class => "form-control"%>
+   <button class="btn btn-lg btn-primary btn-block" type="submit">
+    Entrar
+  </button>
+  <div class='other-links'>
+    <%= link_to t('.sign_up'), sign_up_path %>
+    <%= link_to t('.forgot_password'), new_password_path %>
+  </div>
+<% end %>

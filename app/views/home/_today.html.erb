@@ -1,0 +1,9 @@
+<table class="table table-striped" >
+<% today.each do |d|  %>
+  <tr>
+    <td><%= d.record.strftime("%H:%M") %></td>
+  </tr>
+<% end %>
+</table>
+
+<h3><span class="label label-info">Total trabalhado: <%= today_total.to_s %>  </span></h3>

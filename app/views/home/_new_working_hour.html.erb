@@ -1,0 +1,10 @@
+<%= form_for working_hour, :method => :post, :class => "form-inline" do |f| %>
+  <fieldset>
+    <legend>Novo registro</legend>
+    Dia:
+    <%= f.text_field :day%>
+    Horário:
+    <%= f.text_field :record%>
+    <%= f.submit "+", :class => "btn btn-primary btn-large"%>
+  </fieldset>
+<% end %>

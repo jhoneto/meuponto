@@ -1,0 +1,21 @@
+
+<div class="row">
+    <div class="col-md-6">
+      <%= render 'new_working_hour', working_hour: @working_hour %>
+    </div>
+    <div class="col-md-6">
+      <fieldset>
+        <legend>Hoje (<%= Date.today.strftime("%d/%m/%Y") %>)</legend>
+        <%= render 'today', today: @today, today_total: @today_total %>
+      </fieldset>
+    </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-12">
+    <fieldset>
+      <legend>Indicadores</legend>
+      <%= render 'kpi', balance: @balance %>
+    </fieldset>
+  </div>
+</div>
