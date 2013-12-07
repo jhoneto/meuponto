@@ -2,9 +2,9 @@
   <fieldset>
     <legend>Novo registro</legend>
     Dia:
-    <%= f.text_field :day%>
+    <%= f.text_field :day, :class => "date_format"%>
     Horário:
-    <%= f.text_field :record%>
+    <%= f.text_field :record, :class => "time_format" %>
     <%= f.submit "+", :class => "btn btn-primary btn-large"%>
   </fieldset>
 <% end %>

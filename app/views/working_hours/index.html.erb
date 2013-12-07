@@ -4,12 +4,18 @@
         <thead>
           <th>Dia</th>
           <th>Hora</th>
+					<th>Remover</th>
         </thead>
         <tbody>
           <% @working_hour.each do |wh| %>
             <tr>
               <td><%= wh.day.strftime("%d/%m/%Y") %></td>
               <td><%= wh.record.strftime("%H:%M") %></td>
+							<td>
+								<%= link_to wh, :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %>
+								<i class="icon-trash icon-white"></i> X
+								<% end %>
+							</td>
             </tr>
           <% end %>
         </tbody>

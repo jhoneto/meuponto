@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="col-md-6">
+		<%= form_for @user, :html => {:class => "form"} do |form| %>
+		<fieldset>
+			<legend>Configurações</legend>
+				<div class="form-group">
+					<label> Carga Horária</label>
+					<%= form.text_field :workload, :class => "form-control " %>
+				</div>
+		  <%= form.submit "Salvar", :class => "btn"%>
+		</fieldset>
+		<% end %>
+	</div>
+</div>

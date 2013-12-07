@@ -10,7 +10,14 @@ class WorkingHour < ActiveRecord::Base
   end
   
   def self.today_total(user)
-    self.calculate_hours(Date.today, user) 
+    self.to_human(self.calculate_hours(Date.today, user))
+  end
+  
+  def self.to_human(hours)
+    h = hours.to_i
+    mm = (((hours - h).round(2)*60)/100).round(2)*100
+    mm = mm*(-1) if mm < 0
+    return "#{h}:#{mm.to_i}"
   end
   
   private
@@ -22,6 +29,8 @@ class WorkingHour < ActiveRecord::Base
     for i in 0..size
       total += records[i*2 + 1].record - records[i*2].record
     end
-    total/60/60
+    (total/60/60).round(2)
   end
+  
+  
 end

@@ -1,7 +1,16 @@
 class WorkingHoursController < ApplicationController
+  before_action :set_working_hour, only: [:show, :edit, :update, :destroy]
   
   def index
     @working_hour = WorkingHour.where("user_id = ?", current_user.id).order("day DESC, record DESC")
+  end
+  
+  def destroy
+    @working_hour.destroy
+    respond_to do |format|
+      format.html { redirect_to working_hours_path }
+      format.json { head :no_content }
+    end
   end
   
   def create
@@ -19,6 +28,10 @@ class WorkingHoursController < ApplicationController
   end
   
   private
+  
+  def set_working_hour
+    @working_hour = WorkingHour.find(params[:id])
+  end
   
   def working_hour_params
     params.require(:working_hour).permit(:day, :record)

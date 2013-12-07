@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(function() {
+ 	 $(".date_format").mask("99/99/9999");
+	 $(".time_format").mask("99:99");
+});

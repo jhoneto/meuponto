@@ -24,6 +24,7 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
     <ul class="nav navbar-nav">
       <li><%= link_to "Consulta de ponto", working_hours_path %></li>
+			<li><%= link_to "Minhas configurações", edit_user_path(current_user) %></li>
     </ul>
     <p class="navbar-text navbar-right">Olá, <%= current_user.name %> | <%= link_to "Sair", sign_out_path, method: :delete %></p>
   </div>
