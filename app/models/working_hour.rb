@@ -1,12 +1,26 @@
 class WorkingHour < ActiveRecord::Base
   
+  after_create :update_balance
+  before_destroy :update_balance
+  
+  validates_presence_of :user_id
+  validates_presence_of :day
+  validates_presence_of :record
+  
+  def update_balance
+    user = User.find(self.user_id)
+    value = WorkingHour.calculate_hours(self.day, user) - user.workload.to_f
+    DailySummary.update_summary(user, self.day, value)
+  end
+  
   def self.balance(user)
-    days = WorkingHour.where("user_id = ?", user.id).distinct.select("day")
-    balance = 0
-    days.each do |d|
-      balance += self.calculate_hours(d.day, user) - user.workload.to_f
-    end
-    balance
+    #days = WorkingHour.where("user_id = ?", user.id).distinct.select("day")
+    #balance = 0
+    #days.each do |d|
+    #  balance += self.calculate_hours(d.day, user) - user.workload.to_f
+    #end
+    #balance
+    DailySummary.current_value(user)
   end
   
   def self.today_total(user)

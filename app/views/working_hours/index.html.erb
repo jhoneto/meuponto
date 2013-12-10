@@ -1,21 +1,30 @@
 <div class="row">
     <div class="col-md-12">
+      <div class="well">
+	<%= form_tag working_hours_path, :method => :get, :class => "form-inline" do |f| %>
+	  <label>Período</label>
+	  <%= text_field_tag :data1, params[:data1], :class => "date_format" %>
+	  <label>a</label>
+	  <%= text_field_tag :data2, params[:data2], :class => "date_format" %>
+	  <button type="submit" class="btn btn-primary">Pesquisar</button>
+        <% end %>
+      </div>	
       <table class="table table-striped">
         <thead>
           <th>Dia</th>
           <th>Hora</th>
-					<th>Remover</th>
+	  <th>Remover</th>
         </thead>
         <tbody>
           <% @working_hour.each do |wh| %>
             <tr>
               <td><%= wh.day.strftime("%d/%m/%Y") %></td>
               <td><%= wh.record.strftime("%H:%M") %></td>
-							<td>
-								<%= link_to wh, :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %>
-								<i class="icon-trash icon-white"></i> X
-								<% end %>
-							</td>
+	      <td>
+		<%= link_to wh, :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %>
+		<i class="icon-trash icon-white"></i> X
+		<% end %>
+	      </td>
             </tr>
           <% end %>
         </tbody>

@@ -2,7 +2,10 @@ class WorkingHoursController < ApplicationController
   before_action :set_working_hour, only: [:show, :edit, :update, :destroy]
   
   def index
-    @working_hour = WorkingHour.where("user_id = ?", current_user.id).order("day DESC, record DESC")
+    @working_hour = []
+    if params[:data1] && params[:data2]
+      @working_hour = WorkingHour.where("user_id = ? and day between ? and ?", current_user.id, params[:data1], params[:data2]).order("day DESC, record DESC") 
+    end
   end
   
   def destroy
