@@ -9,6 +9,8 @@ Meuponto::Application.routes.draw do
   resources :users, :controller => "users"
   
   resources :working_hours
+  
+  resources :daily_summaries
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

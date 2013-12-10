@@ -10,7 +10,7 @@ class WorkingHour < ActiveRecord::Base
   def update_balance
     user = User.find(self.user_id)
     value = WorkingHour.calculate_hours(self.day, user) - user.workload.to_f
-    DailySummary.update_summary(user, self.day, value)
+    DailySummary.update_summary(user, self.day, value) if value != 0.00
   end
   
   def self.balance(user)
@@ -24,13 +24,15 @@ class WorkingHour < ActiveRecord::Base
   end
   
   def self.today_total(user)
-    self.to_human(self.calculate_hours(Date.today, user))
+    self.calculate_hours(Date.today, user)
   end
   
   def self.to_human(hours)
     h = hours.to_i
     mm = (((hours - h).round(2)*60)/100).round(2)*100
     mm = mm*(-1) if mm < 0
+    mm = mm.to_i.to_s
+    mm = "0" + mm if mm.to_i < 10
     return "#{h}:#{mm.to_i}"
   end
   

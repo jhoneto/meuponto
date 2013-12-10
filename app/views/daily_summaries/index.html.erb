@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-md-12">
+      <fieldset>
+	<legend>Lançamento Manual</legend>
+	<%= form_for @new_daily_summary, :method => :post, :class => "form-inline" do |f| %>
+	    <fieldset>
+	      Descrição:
+	      <%= f.text_field :description %>
+	      Dia:
+	      <%= f.text_field :day, :class => "date_format"%>
+	      Horário:
+	      <%= f.text_field :value %>
+	      <%= f.submit "+", :class => "btn btn-primary btn-large"%>
+	    </fieldset>
+	<% end %>
+      </fieldset>
+      <br>
+      <fieldset>
+	<legend>Pesquisa</legend>
+	<%= form_tag daily_summaries_path, :method => :get, :class => "form-inline" do |f| %>
+	  <label>Período</label>
+	  <%= text_field_tag :data1, params[:data1], :class => "date_format" %>
+	  <label>a</label>
+	  <%= text_field_tag :data2, params[:data2], :class => "date_format" %>
+	  <button type="submit" class="btn btn-primary">Pesquisar</button>
+        <% end %>
+      </fieldset>
+      <br>
+      <table class="table table-striped">
+        <thead>
+          <th>Descrição</th>
+          <th>Dia</th>
+	  <th>Valor</th>
+          <th>Remover</th>
+        </thead>
+        <tbody>
+          <% @daily_summary.each do |ds| %>
+            <tr>
+              <td><%= ds.description %></td>
+              <td><%= ds.day.strftime("%d/%m/%Y") %></td>
+              <td><%= hour_to_human(ds.value) %></td>
+	      <td>
+		<%if ds.manually%>
+		  <%= link_to ds, :class => "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %>
+		  <i class="icon-trash icon-white"></i> X
+	          <% end %>
+	        <% end %>
+	      </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+<script>
+  applyMask();
+</script>

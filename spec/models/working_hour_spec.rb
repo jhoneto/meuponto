@@ -24,7 +24,7 @@ describe WorkingHour do
       FactoryGirl.create(:working_hour, day: "10/12/2013", user_id: @user.id, record: '12:00')
       FactoryGirl.create(:working_hour, day: "10/12/2013", user_id: @user.id, record: '13:00')
       FactoryGirl.create(:working_hour, day: "10/12/2013", user_id: @user.id, record: '17:00')
-      expect(WorkingHour.today_total(@user)).to eq("8:0")
+      expect(WorkingHour.today_total(@user)).to eq(8.0)
     end   
   end
   context "get daily summary" do
